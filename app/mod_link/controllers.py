@@ -4,7 +4,7 @@ from app.mod_link.forms import LinkForm
 from app.mod_link.forms import LinkDeleteForm
 from app.mod_link.models import Link
 from flask_login import login_required
-from datetime import datetime
+from flask_login import current_user
 from app import db
 from sqlalchemy import desc
 import uuid
@@ -39,7 +39,8 @@ def create():
         if form.validate_on_submit():
             link = Link(original_url=form.original_url.data,
                         visits_allowed=form.visits_allowed.data,
-                        unique_id=str(uuid.uuid4()))
+                        unique_id=str(uuid.uuid4()),
+                        user_id=current_user.id)
             db.session.add(link)
             db.session.commit()
             return redirect(url_for('link.index'))
