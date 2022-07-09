@@ -7,6 +7,7 @@ from flask_login import login_required
 from flask_login import current_user
 from app import db
 from sqlalchemy import desc
+from datetime import datetime
 import uuid
 
 
@@ -62,3 +63,18 @@ def delete():
     else:
         flash('Failed to delete link')
     return render_template('links/show.html', form=form, link=link)
+
+
+@mod_link.route('/reset/<id>', methods=['GET'])
+@login_required
+def reset(id):
+    link = Link.query.get(id)
+    if link is not None:
+        link.visits_used = 0
+        link.is_available = True
+        link.updated_at = datetime.utcnow()
+        db.session.add(link)
+        db.session.commit()
+    else:
+        flash('Failed to reset link')
+    return redirect(url_for('link.link', link_id=link.id))

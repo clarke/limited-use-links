@@ -16,6 +16,7 @@
     <li>Visits Used: {{ link['visits_used'] }}</li>
     <li>Is Still Available? {{ link['is_available'] }}</li>
     <li>Created At: {{ link['created_at'] }}</li>
+    <li>Updated At: {{ link['updated_at'] }}</li>
 </ul>
 <span class="badge badge-primary">{{ link['created'] }}</span>
 
@@ -23,6 +24,7 @@
     {{ form.csrf_token }}
     {{ form.link_id(value=link['id']) }}
     <a onclick="window.history.back();" class="btn btn-link" role="button">Back</a>
+    <a href="{{ url_for('link.reset', id=link.id) }}" class="btn btn-link" role="button">Reset</a>
     <a onclick="confirm_delete();" class="btn btn-danger" role="button">Delete</a>
 </form>
 {% endblock %}

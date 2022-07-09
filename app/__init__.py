@@ -49,9 +49,9 @@ def deliver_link(unique_id):
         link.updated_at = datetime.utcnow()
         db.session.add(link)
         db.session.commit()
-        return(f"We found: {link.original_url}")
+        return(redirect(link.original_url))
     else:
-        return("Did not find it")
+        return("Expired URL")
 
 
 if __name__ == "__main__":

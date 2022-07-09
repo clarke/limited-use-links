@@ -19,3 +19,6 @@ install_requirements:
 
 test:
 	python3 -m pytest tests/test_*.py
+
+shell:
+	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" flask shell
