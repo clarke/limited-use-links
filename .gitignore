@@ -1,2 +1,3 @@
 app/db/*.db
 __pycache__
+.vscode
