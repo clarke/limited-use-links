@@ -16,6 +16,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'auth.login'
 
 from app.mod_auth.controllers import mod_auth as auth_module # noqa E402
+from app.mod_link.controllers import mod_link as link_module # noqa E402
 
 
 @app.errorhandler(404)
@@ -24,6 +25,7 @@ def not_found(error):
 
 
 app.register_blueprint(auth_module)
+app.register_blueprint(link_module)
 
 
 @app.route('/')

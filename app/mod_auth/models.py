@@ -33,28 +33,3 @@ class User(Base):
 
     def get_id(self):
         return str(self.id)
-
-
-class Link(Base):
-    __tablename__ = 'links'
-
-    id = db.Column(db.Integer, primary_key=True)
-    unique_id = db.Column(db.String(120), unique=True, nullable=False)
-    original_url = db.Column(db.Text, nullable=False)
-    visits_used = db.Column(db.Integer, nullable=False, default=0)
-    visits_allowed = db.Column(db.Integer, nullable=False, default=1)
-    clicks = db.relationship('Click', backref='links', lazy=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    def is_available(self):
-        if self.visits_used < self.visits_allowed:
-            return True
-        else:
-            return False
-
-
-class Click(Base):
-    __tablename__ = 'clicks'
-
-    ip_address = db.Column(db.String(80), nullable=False)
-    link_id = db.Column(db.Integer, db.ForeignKey('links.id'))

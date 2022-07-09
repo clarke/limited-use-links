@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Create a New Link {% endblock %}</h1>
+
+<form method="post" action="{{ url_for('link.create') }}">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      <label for="payer_name">Original URL</label>
+      {{ form.original_url(size=256, class="form-control")  }}
+      <small id="originalUrlHelp" class="form-text text-muted">The original link.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Visits Allowed</label>
+      {{ form.visits_allowed(size=20, class="form-control")  }}
+      <small id="allowedVisitsHelp" class="form-text text-muted">The number of times someone is allowed to click link.</small>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Create">
+    <a href="{{url_for('link.index')}}" class="btn btn-primary" role="button">Cancel</a>
+</form>
+{% endblock %}
