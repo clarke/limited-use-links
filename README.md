@@ -1,4 +1,4 @@
-# Image Sharer
+# Limited Use Links
 
 ## Purpose
 
