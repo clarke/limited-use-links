@@ -9,10 +9,7 @@ setup: install_requirements init_db
 	python3 scripts/add_user.py
 
 init_db:
-	python3 app/db/init_db.py
-
-reset_db:
-	python3 app/db/reset_db.py
+	alembic upgrade head
 
 run_container:
 	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/  -v `pwd`/sharable/:/sharable/ limited_use_links
