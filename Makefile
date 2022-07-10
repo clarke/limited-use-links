@@ -3,7 +3,6 @@ run:
 
 reset_db:
 	python3 app/db/reset_db.py
-	python3 app/db/populate_initial_db.py
 
 run_container:
 	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/ crp_recorder
