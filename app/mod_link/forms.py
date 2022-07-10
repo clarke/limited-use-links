@@ -7,6 +7,7 @@ from datetime import datetime
 class LinkForm(FlaskForm):
     original_url = StringField('original_url', validators=[DataRequired()])
     visits_allowed = StringField('visits_allowed', default=1)
+    comment = StringField('comment')
 
 
 class LinkDeleteForm(FlaskForm):

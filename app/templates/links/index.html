@@ -3,13 +3,17 @@
 {% block content %}
     <h1>{% block title %} Links {% endblock %}</h1>
 
-    {% for link in links %}
-    <a href="{{ url_for('link.link', link_id=link.id) }}">
-            <h4>
-                {{link.original_url}} - {{link.unique_id}} - {{link.is_available}} - {{link.created_at.strftime('%m/%d/%Y')}}
-            </h4>
-        </a>
-        <span class="badge badge-primary">{{ link.created }}</span>
-        <hr>
-    {% endfor %}
+    <ol>
+        {% for link in links %}
+        <li>
+            <a href="{{ url_for('link.link', link_id=link.id) }}">
+            <ul>
+                <li>{{ link['comment'] }}</li>
+                <li>Still Available? {{ link['is_available'] }}</li>
+                <li>Created At: {{ link['created_at'] }}</li>
+            </ul>
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
 {% endblock %}

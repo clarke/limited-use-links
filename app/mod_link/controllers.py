@@ -41,7 +41,8 @@ def create():
             link = Link(original_url=form.original_url.data,
                         visits_allowed=form.visits_allowed.data,
                         unique_id=str(uuid.uuid4()),
-                        user_id=current_user.id)
+                        user_id=current_user.id,
+                        comment=form.comment.data)
             db.session.add(link)
             db.session.commit()
             return redirect(url_for('link.index'))

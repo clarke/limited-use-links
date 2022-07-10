@@ -17,6 +17,12 @@
       <small id="allowedVisitsHelp" class="form-text text-muted">The number of times someone is allowed to click link.</small>
     </div>
 
+    <div class="form-group">
+      <label for="amount">Comment</label>
+      {{ form.comment(size=256, class="form-control")  }}
+      <small id="commentHelp" class="form-text text-muted">Additional information about this link.</small>
+    </div>
+
     <input type="submit" class="btn btn-primary" value="Create">
     <a href="{{url_for('link.index')}}" class="btn btn-primary" role="button">Cancel</a>
 </form>

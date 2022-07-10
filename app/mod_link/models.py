@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+import pytz
 
 
 class Base(db.Model):
@@ -23,6 +24,7 @@ class Link(Base):
     clicks = db.relationship('Click', backref='links', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     is_available = db.Column(db.Boolean, nullable=False, default=True)
+    comment = db.Column(db.Text)
 
 
 class Click(Base):
@@ -30,3 +32,10 @@ class Click(Base):
 
     ip_address = db.Column(db.String(80), nullable=False)
     link_id = db.Column(db.Integer, db.ForeignKey('links.id'))
+
+    def local_timestamp(self):
+        utc = pytz.utc
+        central = pytz.timezone('US/Central')
+        # Sat Jul 9 20:07:01 2022
+        time_format = '%A %B %d, %Y %I:%M:%S %p'
+        return utc.localize(self.created_at).astimezone(central).strftime(time_format)

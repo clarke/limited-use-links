@@ -17,8 +17,8 @@
     <li>Is Still Available? {{ link['is_available'] }}</li>
     <li>Created At: {{ link['created_at'] }}</li>
     <li>Updated At: {{ link['updated_at'] }}</li>
+    <li>Comment: {{ link['comment'] }}</li>
 </ul>
-<span class="badge badge-primary">{{ link['created'] }}</span>
 
 <form method="post" action="{{ url_for('link.delete') }}" name="delete_link">
     {{ form.csrf_token }}
@@ -27,4 +27,19 @@
     <a href="{{ url_for('link.reset', id=link.id) }}" class="btn btn-link" role="button">Reset</a>
     <a onclick="confirm_delete();" class="btn btn-danger" role="button">Delete</a>
 </form>
+
+<hr />
+<h4>Clicks</h4>
+
+<ol>
+  {% for click in link.clicks %}
+  <li>
+      <ul>
+          <li> Clicked From: {{ click['ip_address'] }}</li>
+          <li>Clicked At: {{ click.local_timestamp() }}</li>
+      </ul>
+  </li>
+  {% endfor %}
+</ol>
+
 {% endblock %}
