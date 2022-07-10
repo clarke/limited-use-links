@@ -24,3 +24,11 @@ test:
 
 shell:
 	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" flask shell
+
+clean_docker_image:
+	for c in `docker container ls -a | grep limited_use_links | awk '{print $$1}'`; do \
+		docker container rm $$c; \
+	done;
+	for c in `docker image ls -a | grep limited_use_links | awk '{print $$3}'`; do \
+		docker image rm $$c; \
+	done;

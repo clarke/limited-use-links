@@ -23,7 +23,11 @@ def upload():
 
     if request.method == 'POST':
         if form.validate_on_submit():
+            starting_directory = os.getcwd()
+            instance_dir = os.path.join(app.app.instance_path, 'photos')
             zipfile_name = f'{str(uuid.uuid4())}.zip'
+            os.chdir(instance_dir)
+
             with zipfile.ZipFile(zipfile_name, mode='w') as archive:
                 for f in form.photo.data:
                     filename = secure_filename(f.filename)
@@ -32,9 +36,10 @@ def upload():
                     archive.write(filename)
                     os.remove(filename)
 
-                os.rename(zipfile_name, os.path.join(
-                    app.app.instance_path, 'photos', zipfile_name
-                ))
+                # os.rename(zipfile_name, os.path.join(
+                #     app.app.instance_path, 'photos', zipfile_name
+                # ))
+            os.chdir(starting_directory)
 
             parsed_url = urlparse(request.base_url)
             hostname = f'{parsed_url.scheme}://{parsed_url.hostname}'
