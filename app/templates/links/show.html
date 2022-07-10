@@ -35,8 +35,9 @@
   {% for click in link.clicks %}
   <li>
       <ul>
-          <li> Clicked From: {{ click['ip_address'] }}</li>
+          <li>Clicked From: {{ click['ip_address'] }}</li>
           <li>Clicked At: {{ click.local_timestamp() }}</li>
+          <li>Link Available? {{ click.was_available }}</li>
       </ul>
   </li>
   {% endfor %}

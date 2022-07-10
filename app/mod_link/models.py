@@ -32,6 +32,7 @@ class Click(Base):
 
     ip_address = db.Column(db.String(80), nullable=False)
     link_id = db.Column(db.Integer, db.ForeignKey('links.id'))
+    was_available = db.Column(db.Boolean, nullable=False, default=True)
 
     def local_timestamp(self):
         utc = pytz.utc

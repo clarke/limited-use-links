@@ -52,14 +52,21 @@ def deliver_link(unique_id):
         link.visits_used = current_visits
         link.updated_at = datetime.utcnow()
 
-        click = Click(ip_address=request.remote_addr, link_id=link.id)
+        click = Click(ip_address=request.remote_addr, link_id=link.id,
+                      was_available=True)
 
         db.session.add(link)
         db.session.add(click)
         db.session.commit()
         return(redirect(link.original_url))
     else:
-        return("This URL has expired. Please contact the sender for more information.")
+        click = Click(ip_address=request.remote_addr, link_id=link.id,
+                      was_available=False)
+        db.session.add(click)
+        db.session.commit()
+
+        return("This URL has expired. " +
+               "Please contact the sender for more information.")
 
 
 if __name__ == "__main__":
