@@ -1,7 +1,9 @@
+from ipaddress import ip_address
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask import redirect
 from flask import url_for
+from flask import request
 from flask_login import LoginManager
 from flask_login import current_user
 from flask import render_template
@@ -17,7 +19,7 @@ login_manager.login_view = 'auth.login'
 
 from app.mod_auth.controllers import mod_auth as auth_module # noqa E402
 from app.mod_link.controllers import mod_link as link_module # noqa E402
-from app.mod_link.models import Link # noqa E402
+from app.mod_link.models import Link, Click # noqa E402
 
 
 @app.errorhandler(404)
@@ -47,7 +49,11 @@ def deliver_link(unique_id):
             link.is_available = False
         link.visits_used = current_visits
         link.updated_at = datetime.utcnow()
+
+        click = Click(ip_address=request.remote_addr, link_id=link.id)
+
         db.session.add(link)
+        db.session.add(click)
         db.session.commit()
         return(redirect(link.original_url))
     else:
