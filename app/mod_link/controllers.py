@@ -58,6 +58,8 @@ def delete():
     link = Link.query.get(form.link_id.data)
     if form.validate_on_submit():
         if link is not None:
+            for click in link.clicks:
+                db.session.delete(click)
             db.session.delete(link)
             db.session.commit()
         return redirect(url_for('link.index'))
