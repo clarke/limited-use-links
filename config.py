@@ -23,3 +23,9 @@ SECRET_KEY = "Qr)E[Y>9Yqn~8mTr{LuUD[LqZ@!4+d"
 
 # The location to store uploaded files
 UPLOAD_FILE_DIRECTORY = os.path.join(os.getcwd(), 'sharable', 'files')
+
+# The base URL for shared files in UPLOAD_FILE_DIRECTORY.
+# This URL should be exposed with nginx or another tool
+# better suited to serve static files. It is not exposed
+# by this application.
+SHARED_FILES_BASE_URL = "http://localhost:8000/s"

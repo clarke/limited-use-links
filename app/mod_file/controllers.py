@@ -37,11 +37,7 @@ def upload():
 
             os.chdir(starting_directory)
 
-            parsed_url = urlparse(request.base_url)
-            hostname = f'{parsed_url.scheme}://{parsed_url.hostname}'
-            if parsed_url.port not in [80, 443]:
-                hostname = f'{hostname}:{parsed_url.port}'
-            file_url = f'{hostname}/sharable/files/{zipfile_name}'
+            file_url = f"{app.app.config['SHARED_FILES_BASE_URL']}/{zipfile_name}"
 
             link = Link(original_url=file_url,
                         visits_allowed=form.visits_allowed.data,

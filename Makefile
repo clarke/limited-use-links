@@ -12,7 +12,7 @@ reset_db:
 	python3 app/db/reset_db.py
 
 run_container:
-	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/  -v `pwd`/instance/:/instance/ limited_use_links
+	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/  -v `pwd`/sharable/:/sharable/ limited_use_links
 
 build_image:
 	docker build -t limited_use_links .
