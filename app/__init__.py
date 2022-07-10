@@ -19,6 +19,7 @@ login_manager.login_view = 'auth.login'
 
 from app.mod_auth.controllers import mod_auth as auth_module # noqa E402
 from app.mod_link.controllers import mod_link as link_module # noqa E402
+from app.mod_file.controllers import mod_file as file_module # noqa E402
 from app.mod_link.models import Link, Click # noqa E402
 
 
@@ -29,6 +30,7 @@ def not_found(error):
 
 app.register_blueprint(auth_module)
 app.register_blueprint(link_module)
+app.register_blueprint(file_module)
 
 
 @app.route('/')
