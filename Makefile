@@ -8,10 +8,10 @@ reset_db:
 	python3 app/db/reset_db.py
 
 run_container:
-	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/ crp_recorder
+	docker container run -i -p 8000:8000 -v `pwd`/app/db/:/db/ limited_use_links
 
 build_image:
-	docker build -t crp_recorder .
+	docker build -t limited_use_links .
 
 lint:
 	python3 -m flake8 app config.py run.py wsgi.py
