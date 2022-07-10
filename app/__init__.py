@@ -59,7 +59,7 @@ def deliver_link(unique_id):
         db.session.commit()
         return(redirect(link.original_url))
     else:
-        return("Expired URL")
+        return("This URL has expired. Please contact the sender for more information.")
 
 
 if __name__ == "__main__":
