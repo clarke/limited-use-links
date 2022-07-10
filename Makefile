@@ -1,6 +1,9 @@
 run:
 	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" python3 run.py
 
+run_production:
+	env FLASK_ENV=production gunicorn wsgi:app
+
 setup: install_requirements init_db
 	mkdir -p sharable/files
 	python3 scripts/add_user.py
