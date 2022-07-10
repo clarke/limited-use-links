@@ -42,7 +42,7 @@ def upload():
             hostname = f'{parsed_url.scheme}://{parsed_url.hostname}'
             if parsed_url.port not in [80, 443]:
                 hostname = f'{hostname}:{parsed_url.port}'
-            file_url = f'{hostname}/instance/photos/{zipfile_name}'
+            file_url = f'{hostname}/instance/files/{zipfile_name}'
 
             link = Link(original_url=file_url,
                         visits_allowed=form.visits_allowed.data,
