@@ -1,6 +1,9 @@
 run:
 	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" python3 run.py
 
+init_db:
+	python3 app/db/init_db.py
+
 reset_db:
 	python3 app/db/reset_db.py
 
