@@ -9,6 +9,7 @@ This application allows for sharing a unique URL a single time, after which it e
 To do the inital setup, run:
 
 `$ make install_requirements`
+
 `$ make init_db`
 
 ## Scripts
