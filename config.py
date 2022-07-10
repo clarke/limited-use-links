@@ -20,3 +20,6 @@ THREADS_PER_PAGE = 2
 
 # Secret key for signing cookies
 SECRET_KEY = "Qr)E[Y>9Yqn~8mTr{LuUD[LqZ@!4+d"
+
+# The location to store uploaded files
+UPLOAD_FILE_DIRECTORY = os.path.join(os.getcwd(), 'sharable', 'files')

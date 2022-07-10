@@ -24,9 +24,8 @@ def upload():
     if request.method == 'POST':
         if form.validate_on_submit():
             starting_directory = os.getcwd()
-            instance_dir = os.path.join(app.app.instance_path, 'files')
             zipfile_name = f'{str(uuid.uuid4())}.zip'
-            os.chdir(instance_dir)
+            os.chdir(app.app.config['UPLOAD_FILE_DIRECTORY'])
 
             with zipfile.ZipFile(zipfile_name, mode='w') as archive:
                 for f in form.photo.data:
@@ -42,7 +41,7 @@ def upload():
             hostname = f'{parsed_url.scheme}://{parsed_url.hostname}'
             if parsed_url.port not in [80, 443]:
                 hostname = f'{hostname}:{parsed_url.port}'
-            file_url = f'{hostname}/instance/files/{zipfile_name}'
+            file_url = f'{hostname}/sharable/files/{zipfile_name}'
 
             link = Link(original_url=file_url,
                         visits_allowed=form.visits_allowed.data,

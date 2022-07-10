@@ -2,7 +2,7 @@ run:
 	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" python3 run.py
 
 setup: install_requirements init_db
-	mkdir -p instance/files
+	mkdir -p sharable/files
 	python3 scripts/add_user.py
 
 init_db:
@@ -36,3 +36,6 @@ clean_docker_image:
 	for c in `docker image ls -a | grep limited_use_links | awk '{print $$3}'`; do \
 		docker image rm $$c; \
 	done;
+
+clean:
+	rm -f sharable/files/*.zip
