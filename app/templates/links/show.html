@@ -11,7 +11,7 @@
     </script>
 <ul>
     <li><b>Original URL: {{ link['original_url'] }}</b></li>
-    <li>Unique URL: {{ link['unique_id'] }}</li>
+    <li>Unique URL: {{ url_for('deliver_link', unique_id=link['unique_id'], _external=True) }}</li>
     <li>Visits Allowed: {{ link['visits_allowed'] }}</li>
     <li>Visits Used: {{ link['visits_used'] }}</li>
     <li>Is Still Available? {{ link['is_available'] }}</li>
