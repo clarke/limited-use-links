@@ -4,9 +4,11 @@ from getpass import getpass
 import hashlib
 
 
-username = input("Enter username:")
-email = input("Enter email:")
-password = getpass("Password:")
+print("Adding a new administrative user\n")
+
+username = input("Enter username: ")
+email = input("Enter email: ")
+password = getpass("Password: ")
 
 if username is not None and email is not None and password is not None:
     hashed_password = hashlib.sha512(password.encode('utf-8')).hexdigest()

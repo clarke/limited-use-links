@@ -1,6 +1,10 @@
 run:
 	env FLASK_ENV=development FLASK_APP=app.py SQLALCHEMY_DATABASE_URI="sqlite:///db/database.db" python3 run.py
 
+setup: install_requirements init_db
+	mkdir -p instance/files
+	python3 scripts/add_user.py
+
 init_db:
 	python3 app/db/init_db.py
 
